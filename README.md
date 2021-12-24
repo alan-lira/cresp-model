@@ -27,12 +27,12 @@ This is a simple implementation of the time cost model for MapReduce application
 
 ### 2. Usage (Linux Terminal)
 
-*2.1 Navigate to cresp-model directory:*
+*2.1 Navigate to "cresp-model" directory:*
 
 > cd cresp-model
 
 
-*2.2 Edit as you wish the input parameters and other settings on the cresp_config file:*
+*2.2 Edit as you wish the input parameters and other settings on "cresp_config" file:*
 
 > sudo apt install vim -y
 

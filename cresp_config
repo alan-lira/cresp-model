@@ -12,8 +12,8 @@
 M = 12
 γ = 2
 υ = 0.046900
-φ = 5
-τ = 50
+φ = 10
+τ = 0.5
 
 [bounds settings]
 m_lower_bound = 1

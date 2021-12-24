@@ -1,5 +1,5 @@
 # CRESP Model (cresp-model)
-This is a simple implementation of the time cost model for MapReduce applications developed in the work entitled "CRESP: Towards Optimal Resource Provisioning for MapReduce Computing in Public Clouds". (https://ieeexplore.ieee.org/abstract/document/6678508/)
+This is a simple Python implementation of the time cost model for MapReduce applications developed in the work entitled "CRESP: Towards Optimal Resource Provisioning for MapReduce Computing in Public Clouds". (https://ieeexplore.ieee.org/abstract/document/6678508/)
 
 ### 1. Installation (Linux Terminal)
 
@@ -32,7 +32,7 @@ This is a simple implementation of the time cost model for MapReduce application
 > cd cresp-model
 
 
-*2.2 Edit as you wish the input parameters and other settings on "cresp_config" file:*
+*2.2 Edit, as you wish, the input parameters and other settings on "cresp_config" file:*
 
 > sudo apt install vim -y
 

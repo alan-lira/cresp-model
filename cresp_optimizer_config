@@ -1,12 +1,12 @@
 [beta parameters]
-β0 = 37.7636
-β1 = 0
-β2 = 0.3118
-β3 = 3.1979
-β4 = 0
-β5 = 0
-β6 = 12.2204
-β7 = 3.1549
+β0 = 37.88210733101229
+β1 = 0.0
+β2 = 0.3102401281180045
+β3 = 3.1668535749033992
+β4 = 0.0
+β5 = 0.0
+β6 = 12.221071966082688
+β7 = 3.163456587853872
 
 [input parameters]
 M = 12
@@ -28,3 +28,4 @@ optimization_problem = 1
 monetary_unit = USD
 time_unit = second
 optimization_modes = brute_force, gurobi
+

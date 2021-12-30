@@ -1,0 +1,10 @@
+[general settings]
+number_of_experiments = 20
+data_block_size_in_megabytes = 128
+γ = 2
+
+[samples range settings]
+m = 1...20
+r = 1...m
+M = 2m...15m
+

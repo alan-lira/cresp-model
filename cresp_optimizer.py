@@ -1,14 +1,14 @@
-import gurobipy
-import math
-import time
 from configparser import ConfigParser
-from gurobipy import GRB
+from gurobipy import Env, GRB, Model
+from math import ceil, inf, log
 from pathlib import Path
+from time import time
 
 
-class CrespModel:
+class CrespOptimizer:
 
     def __init__(self) -> None:
+        self.config_file_path = Path("cresp_optimizer_config")
         self.betaZero = 0.0
         self.betaOne = 0.0
         self.betaTwo = 0.0
@@ -39,8 +39,8 @@ class CrespModel:
         self.optimization_problem = 0
         self.optimization_problem_description = None
         self.optimization_modes = None
-        self.T3 = math.inf
-        self.C = math.inf
+        self.T3 = inf
+        self.C = inf
         self.Nu = 0
 
     def load_beta_parameters(self,
@@ -93,7 +93,7 @@ class CrespModel:
         self.alfaOne = self.betaOne * self.M
         self.alfaTwo = self.betaTwo * self.M
         self.alfaThree = self.betaThree
-        self.alfaFour = (self.betaFour * self.M * math.log(self.M)) + (self.betaFive * self.M)
+        self.alfaFour = (self.betaFour * self.M * log(self.M)) + (self.betaFive * self.M)
         self.alfaFive = self.betaSeven
 
     def load_optimization_problem(self,
@@ -146,8 +146,8 @@ class CrespModel:
     def reset_model_results(self) -> None:
         self.m = 0
         self.R = 0
-        self.T3 = math.inf
-        self.C = math.inf
+        self.T3 = inf
+        self.C = inf
         self.Nu = 0
 
     def optimize_model_with_brute_force(self) -> None:
@@ -192,7 +192,7 @@ class CrespModel:
                         self.C = C_candidate
 
     def optimize_model_with_gurobi(self) -> None:
-        with gurobipy.Env() as env, gurobipy.Model(name="CRESP Cost Model on Gurobi for Python", env=env) as model:
+        with Env() as env, Model(name="CRESP Cost Model on Gurobi for Python", env=env) as model:
             # SET MODEL PARAMETERS
             model.setParam("NonConvex", 2)
             # SET MODEL DECISION VARIABLE
@@ -257,16 +257,16 @@ class CrespModel:
             if model.status == 2:
                 for v in model.getVars():
                     if str(v.varName) == "z1":
-                        self.m = math.ceil(1 / v.x)
+                        self.m = ceil(1 / v.x)
                     if str(v.varName) == "z2":
-                        self.R = math.ceil(1 / v.x)
+                        self.R = ceil(1 / v.x)
                 self.T3 = T3.getValue()
                 self.C = self.calculate_C(self.T3, self.m, self.R)
             del env
             del model
 
     def calculate_optimal_number_of_vms(self) -> None:
-        self.Nu = math.ceil((self.m + self.R) / self.Gamma)
+        self.Nu = ceil((self.m + self.R) / self.Gamma)
 
     def print_optimization_results(self,
                                    optimization_mode: str,
@@ -282,33 +282,36 @@ class CrespModel:
         else:
             print("MODEL IS INFEASIBLE!")
 
-    def optimizate_model_with_available_optimization_modes(self) -> None:
+    def optimize_model_with_available_optimization_modes(self) -> None:
         print("CRESP's Optimization Problem \"{0}\" - {1}:".format(self.optimization_problem,
                                                                    self.optimization_problem_description))
         for mode in self.optimization_modes:
             self.reset_model_results()
-            optimization_start_time = time.time()
+            optimization_start_time = time()
             if mode == "brute_force":
                 self.optimize_model_with_brute_force()
             if mode == "gurobi":
                 self.optimize_model_with_gurobi()
-            optimization_end_time = time.time() - optimization_start_time
+            optimization_end_time = time() - optimization_start_time
             self.calculate_optimal_number_of_vms()
             self.print_optimization_results(mode, optimization_end_time)
 
 
 def main():
-    # INIT CRESP MODEL OBJECT
-    cm = CrespModel()
+    # INIT CRESP OPTIMIZER OBJECT
+    co = CrespOptimizer()
 
     # INIT CONFIGPARSER OBJECT
     cp = ConfigParser()
 
+    # PRESERVE OPTIONS NAMES' CASE
+    cp.optionxform = str
+
     # READ CONFIG FILE
-    cp.read(Path("cresp_config"))
+    cp.read(co.config_file_path)
 
     # LOAD BETA PARAMETERS (β0, β1, β2, β3, β4, β5, β6, β7)
-    cm.load_beta_parameters(cp)
+    co.load_beta_parameters(cp)
 
     # LOAD INPUT PARAMETERS (M, γ, υ, φ, τ)
     # M: Number of chunks of data (Map tasks); M = Input (GB) * 1024MB / HDFS Block Size (MB)
@@ -316,25 +319,25 @@ def main():
     # υ (Upsilon): Price of renting one VM instance for an hour
     # φ (Phi): Maximum monetary cost φ for finishing the job (Monetary budget constraint)
     # τ (Tau): Maximum amount of time τ, in hours, for finishing the job (Time constraint)
-    cm.load_input_parameters(cp)
+    co.load_input_parameters(cp)
 
     # LOAD m BOUNDS (lower, upper)
-    cm.load_m_bounds(cp)
+    co.load_m_bounds(cp)
 
     # LOAD R BOUNDS (lower, upper)
-    cm.load_R_bounds(cp)
+    co.load_R_bounds(cp)
 
     # LOAD MONETARY UNIT [USD]
-    cm.load_monetary_unit(cp)
+    co.load_monetary_unit(cp)
 
     # LOAD TIME UNIT [second | minute | hour]
-    cm.load_time_unit(cp)
+    co.load_time_unit(cp)
 
     # CONVERT TIME UNIT DEPENDENT VARIABLES (υ, τ)
-    cm.convert_time_unit_dependent_variables()
+    co.convert_time_unit_dependent_variables()
 
     # CALCULATE ALFA CONSTANTS (α0, α1, α2, α3, α4, α5)
-    cm.calculate_alfa_constants()
+    co.calculate_alfa_constants()
 
     # LOAD OPTIMIZATION PROBLEM
     # 1: Given a maximum monetary cost φ for finishing the job (Monetary budget constraint),
@@ -342,19 +345,19 @@ def main():
     # 2: Given a maximum amount of time τ for finishing the job (Time constraint),
     #    find the best resource allocation to minimize the monetary cost
     # 3: Find the most economical solution for the job without the Time constraint τ
-    cm.load_optimization_problem(cp)
+    co.load_optimization_problem(cp)
 
     # LOAD OPTIMIZATION MODES [brute_force | gurobi | brute_force, gurobi]
-    cm.load_optimization_modes(cp)
+    co.load_optimization_modes(cp)
 
-    # OPTIMIZATE MODEL WITH AVAILABLE OPTIMIZATION MODES
-    cm.optimizate_model_with_available_optimization_modes()
-
-    # DELETE CRESP MODEL OBJECT
-    del cm
+    # OPTIMIZE MODEL WITH AVAILABLE OPTIMIZATION MODES
+    co.optimize_model_with_available_optimization_modes()
 
     # DELETE CONFIGPARSER OBJECT
     del cp
+
+    # DELETE CRESP OPTIMIZER OBJECT
+    del co
 
 
 if __name__ == "__main__":

@@ -7,9 +7,8 @@ from random import sample
 class ExperimentsMaker:
 
     def __init__(self) -> None:
-        self.experiments_maker_config_file_path = Path("experiments_maker_config")
-        self.cresp_optimizer_config_file_path = Path("cresp_optimizer_config")
-        self.experiments_file_path = Path("experiments")
+        self.experiments_maker_config_file_path = Path("config/experiments_maker_config")
+        self.experiments_output_file_path = None
         self.number_of_experiments = 0
         self.data_block_size_in_megabytes = 0
         self.gamma = 0
@@ -29,6 +28,7 @@ class ExperimentsMaker:
         self.number_of_experiments = int(cp.get("general settings", "number_of_experiments"))
         self.data_block_size_in_megabytes = float(cp.get("general settings", "data_block_size_in_megabytes"))
         self.gamma = int(cp.get("general settings", "γ"))
+        self.experiments_output_file_path = Path(cp.get("general settings", "experiments_output_file"))
         del cp  # DELETE CONFIGPARSER OBJECT
 
     def load_samples_ranges(self) -> None:
@@ -123,7 +123,7 @@ class ExperimentsMaker:
         cp = ConfigParser()  # INIT CONFIGPARSER OBJECT
         cp.optionxform = str  # PRESERVE OPTIONS NAMES' CASE
         for i in range(self.number_of_experiments):
-            with open(self.experiments_file_path, "w") as file_object:
+            with open(self.experiments_output_file_path, "w") as file_object:
                 cp["Experiment " + str(i+1)] = {
                     "m": str(self.m_list[i]),
                     "r": str(self.r_list[i]),
@@ -137,7 +137,7 @@ class ExperimentsMaker:
                 cp.write(file_object)
         del cp  # DELETE CONFIGPARSER OBJECT
         print("Generated '{0}' file with the settings read from '{1}' file."
-              .format(self.experiments_file_path,
+              .format(self.experiments_output_file_path,
                       self.experiments_maker_config_file_path))
 
 
@@ -145,7 +145,7 @@ def main():
     # INIT EXPERIMENTS MAKER OBJECT
     em = ExperimentsMaker()
 
-    # LOAD GENERAL SETTINGS (number of experiments, data block size in MB, gamma)
+    # LOAD GENERAL SETTINGS (number of experiments, data block size in MB, gamma, output file path)
     em.load_general_settings()
 
     # LOAD SAMPLES RANGES FOR "m", "r" AND "M"

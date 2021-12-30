@@ -2,6 +2,7 @@
 number_of_experiments = 20
 data_block_size_in_megabytes = 128
 γ = 2
+experiments_output_file = experiments/experiments
 
 [samples range settings]
 m = 1...20

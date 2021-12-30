@@ -8,7 +8,7 @@ from time import time
 class CrespOptimizer:
 
     def __init__(self) -> None:
-        self.config_file_path = Path("cresp_optimizer_config")
+        self.config_file_path = Path("config/cresp_optimizer_config")
         self.betaZero = 0.0
         self.betaOne = 0.0
         self.betaTwo = 0.0
@@ -64,21 +64,23 @@ class CrespOptimizer:
 
     def load_m_bounds(self,
                       config_parser: ConfigParser) -> None:
-        self.m_lower_bound = int(config_parser.get("bounds settings", "m_lower_bound"))
-        self.m_upper_bound = int(config_parser.get("bounds settings", "m_upper_bound"))
+        m_bounds = config_parser.get("variables bounds", "m").split("...")
+        self.m_lower_bound = int(m_bounds[0])
+        self.m_upper_bound = int(m_bounds[1])
 
     def load_R_bounds(self,
                       config_parser: ConfigParser) -> None:
-        self.R_lower_bound = int(config_parser.get("bounds settings", "R_lower_bound"))
-        self.R_upper_bound = int(config_parser.get("bounds settings", "R_upper_bound"))
+        R_bounds = config_parser.get("variables bounds", "R").split("...")
+        self.R_lower_bound = int(R_bounds[0])
+        self.R_upper_bound = int(R_bounds[1])
 
     def load_monetary_unit(self,
                            config_parser: ConfigParser) -> None:
-        self.monetary_unit = str(config_parser.get("general settings", "monetary_unit"))
+        self.monetary_unit = str(config_parser.get("general", "monetary_unit"))
 
     def load_time_unit(self,
                        config_parser: ConfigParser) -> None:
-        self.time_unit = str(config_parser.get("general settings", "time_unit"))
+        self.time_unit = str(config_parser.get("general", "time_unit"))
 
     def convert_time_unit_dependent_variables(self) -> None:
         if self.time_unit == "minute":
@@ -98,7 +100,7 @@ class CrespOptimizer:
 
     def load_optimization_problem(self,
                                   config_parser: ConfigParser) -> None:
-        self.optimization_problem = int(config_parser.get("cresp settings", "optimization_problem"))
+        self.optimization_problem = int(config_parser.get("cresp", "optimization_problem"))
         if self.optimization_problem == 1:
             self.optimization_problem_description = \
                 "Minimize the job time, given a maximum monetary cost φ = " \
@@ -112,7 +114,7 @@ class CrespOptimizer:
 
     def load_optimization_modes(self,
                                 config_parser: ConfigParser) -> None:
-        self.optimization_modes = str(config_parser.get("general settings", "optimization_modes")).split(", ")
+        self.optimization_modes = str(config_parser.get("general", "optimization_modes")).split(", ")
 
     def calculate_T3(self,
                      m_candidate: int,

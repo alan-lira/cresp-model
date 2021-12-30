@@ -3,13 +3,15 @@ from math import log
 from numpy import array
 from pathlib import Path
 from scipy.optimize import nnls
+from sys import exit
 
 
 class BetaParametersLearner:
 
     def __init__(self) -> None:
-        self.cresp_optimizer_config_file_path = Path("cresp_optimizer_config")
-        self.experiments_file_path = Path("experiments")
+        self.cresp_optimizer_config_file_path = Path("config/cresp_optimizer_config")
+        self.beta_parameters_learner_config_file_path = Path("config/beta_parameters_learner_config")
+        self.experiments_input_file_path = None
         self.A_matrix = []
         self.b_vector = []
         self.betaZero = 0.0
@@ -20,6 +22,13 @@ class BetaParametersLearner:
         self.betaFive = 0.0
         self.betaSix = 0.0
         self.betaSeven = 0.0
+
+    def load_general_settings(self) -> None:
+        cp = ConfigParser()  # INIT CONFIGPARSER OBJECT
+        cp.optionxform = str  # PRESERVE OPTIONS NAMES' CASE
+        cp.read(self.beta_parameters_learner_config_file_path)
+        self.experiments_input_file_path = Path(cp.get("general", "experiments_input_file"))
+        del cp  # DELETE CONFIGPARSER OBJECT
 
     @staticmethod
     def calculate_x0() -> float:
@@ -62,7 +71,7 @@ class BetaParametersLearner:
     def load_A_matrix(self) -> None:
         cp = ConfigParser()  # INIT CONFIGPARSER OBJECT
         cp.optionxform = str  # PRESERVE OPTIONS NAMES' CASE
-        cp.read(self.experiments_file_path)
+        cp.read(self.experiments_input_file_path)
         for section in cp.sections():
             m = int(cp.get(section, "m"))
             r = int(cp.get(section, "r"))
@@ -80,9 +89,16 @@ class BetaParametersLearner:
     def load_b_vector(self) -> None:
         cp = ConfigParser()  # INIT CONFIGPARSER OBJECT
         cp.optionxform = str  # PRESERVE OPTIONS NAMES' CASE)
-        cp.read(self.experiments_file_path)
+        cp.read(self.experiments_input_file_path)
         for section in cp.sections():
-            execution_time_in_seconds = float(cp.get(section, "execution_time_in_seconds"))
+            execution_time_in_seconds = 0
+            try:
+                execution_time_in_seconds = float(cp.get(section, "execution_time_in_seconds"))
+            except ValueError:
+                print("Please fill all the '{0}' fields of '{1}' file!"
+                      .format("execution_time_in_seconds",
+                              self.experiments_input_file_path))
+                exit(1)
             self.b_vector.append(execution_time_in_seconds)
         del cp  # DELETE CONFIGPARSER OBJECT
 
@@ -116,12 +132,15 @@ class BetaParametersLearner:
         del cp  # DELETE CONFIGPARSER OBJECT
         print("Updated '{0}' file with the Beta parameters learned from '{1}' file."
               .format(self.cresp_optimizer_config_file_path,
-                      self.experiments_file_path))
+                      self.experiments_input_file_path))
 
 
 def main():
     # INIT BETA PARAMETERS LEARNER OBJECT
     bpl = BetaParametersLearner()
+
+    # LOAD GENERAL SETTINGS (experiments file path)
+    bpl.load_general_settings()
 
     # LOAD "A" MATRIX
     bpl.load_A_matrix()

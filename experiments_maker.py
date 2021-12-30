@@ -145,7 +145,7 @@ def main():
     # INIT EXPERIMENTS MAKER OBJECT
     em = ExperimentsMaker()
 
-    # LOAD GENERAL SETTINGS (number of experiments, data block size in MB, gamma, output file path)
+    # LOAD GENERAL SETTINGS (number of experiments, data block size in MB, gamma, experiments output file path)
     em.load_general_settings()
 
     # LOAD SAMPLES RANGES FOR "m", "r" AND "M"

@@ -139,7 +139,7 @@ def main():
     # INIT BETA PARAMETERS LEARNER OBJECT
     bpl = BetaParametersLearner()
 
-    # LOAD GENERAL SETTINGS (experiments file path)
+    # LOAD GENERAL SETTINGS (experiments input file path)
     bpl.load_general_settings()
 
     # LOAD "A" MATRIX

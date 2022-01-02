@@ -9,8 +9,8 @@ from sys import exit
 class BetaParametersLearner:
 
     def __init__(self) -> None:
-        self.cresp_optimizer_config_file_path = Path("config/cresp_optimizer_config")
-        self.beta_parameters_learner_config_file_path = Path("config/beta_parameters_learner_config")
+        self.cresp_optimizer_config_file_path = Path("config/cresp_optimizer.cfg")
+        self.beta_parameters_learner_config_file_path = Path("config/beta_parameters_learner.cfg")
         self.experiments_input_file_path = None
         self.A_matrix = []
         self.b_vector = []
@@ -26,7 +26,7 @@ class BetaParametersLearner:
     def load_general_settings(self) -> None:
         cp = ConfigParser()  # INIT CONFIGPARSER OBJECT
         cp.optionxform = str  # PRESERVE OPTIONS NAMES' CASE
-        cp.read(self.beta_parameters_learner_config_file_path)
+        cp.read(self.beta_parameters_learner_config_file_path, encoding="utf-8")
         self.experiments_input_file_path = Path(cp.get("general", "experiments_input_file"))
         del cp  # DELETE CONFIGPARSER OBJECT
 
@@ -71,7 +71,7 @@ class BetaParametersLearner:
     def load_A_matrix(self) -> None:
         cp = ConfigParser()  # INIT CONFIGPARSER OBJECT
         cp.optionxform = str  # PRESERVE OPTIONS NAMES' CASE
-        cp.read(self.experiments_input_file_path)
+        cp.read(self.experiments_input_file_path, encoding="utf-8")
         for section in cp.sections():
             m = int(cp.get(section, "m"))
             r = int(cp.get(section, "r"))
@@ -89,7 +89,7 @@ class BetaParametersLearner:
     def load_b_vector(self) -> None:
         cp = ConfigParser()  # INIT CONFIGPARSER OBJECT
         cp.optionxform = str  # PRESERVE OPTIONS NAMES' CASE)
-        cp.read(self.experiments_input_file_path)
+        cp.read(self.experiments_input_file_path, encoding="utf-8")
         for section in cp.sections():
             execution_time_in_seconds = 0
             try:
@@ -117,7 +117,7 @@ class BetaParametersLearner:
     def update_beta_parameters_on_config_file(self) -> None:
         cp = ConfigParser()  # INIT CONFIGPARSER OBJECT
         cp.optionxform = str  # PRESERVE OPTIONS NAMES' CASE)
-        cp.read(self.cresp_optimizer_config_file_path)
+        cp.read(self.cresp_optimizer_config_file_path, encoding="utf-8")
         section_name = "beta parameters"
         cp.set(section_name, "β0", str(self.betaZero))
         cp.set(section_name, "β1", str(self.betaOne))
@@ -127,7 +127,7 @@ class BetaParametersLearner:
         cp.set(section_name, "β5", str(self.betaFive))
         cp.set(section_name, "β6", str(self.betaSix))
         cp.set(section_name, "β7", str(self.betaSeven))
-        with open(self.cresp_optimizer_config_file_path, "w") as config_file:
+        with open(self.cresp_optimizer_config_file_path, "w", encoding="utf-8") as config_file:
             cp.write(config_file)
         del cp  # DELETE CONFIGPARSER OBJECT
         print("Updated '{0}' file with the Beta parameters learned from '{1}' file."

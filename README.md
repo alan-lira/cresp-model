@@ -1,31 +1,32 @@
 # CRESP Model (cresp-model)
 This is a simple Python implementation of the time cost model for MapReduce applications developed in the work entitled "CRESP: Towards Optimal Resource Provisioning for MapReduce Computing in Public Clouds". (https://ieeexplore.ieee.org/abstract/document/6678508/)
 
-### 1. Installation (Linux Terminal)
+### 1. Installation (Linux / Windows Shell)
 
-*1.1 Install pip:*
-> sudo apt install python3-pip -y
+##### 1.1 Clone or download this repository's content:
 
-*1.2 Install Gurobi Optimizer for Python (gurobipy):*
-> python -m pip install gurobipy
+###### *1.1.1 Clone (Requires [Git](https://git-scm.com/downloads "Download Git"))*
 
-*1.3 Clone or download this repository's content:*
+`$ git clone https://github.com/alan-lira/cresp-model.git`
 
-*1.3.1 (Clone)*
+###### *1.1.2 Download and extract (Linux Shell + Unzip)*
 
-> sudo apt install git -y
+`$ sudo apt install unzip -y && wget -O cresp-model.zip https://github.com/alan-lira/cresp-model/archive/refs/heads/main.zip && unzip cresp-model.zip && mv cresp-model-main cresp-model && rm -rf cresp-model.zip`
+###### *1.1.3 Download and extract (Windows Shell)*
 
-> git clone https://github.com/alan-lira/cresp-model.git
+`$ powershell -Command Invoke-WebRequest https://github.com/alan-lira/cresp-model/archive/refs/heads/main.zip -OutFile cresp-model.zip; Expand-Archive -Path cresp-model.zip; Move-Item -Path cresp-model\cresp-model-main -Destination .\; del cresp-model; Rename-Item cresp-model-main cresp-model; del cresp-model.zip`
 
-*1.3.2 (Download and Extract)*
+##### 1.2 Install dependencies (Requires [Python](https://www.python.org/downloads/ "Download Python")):
 
-> sudo apt install unzip -y
+###### *1.2.1 Linux Shell (Bash)*
 
-> wget https://github.com/alan-lira/cresp-model/archive/refs/heads/main.zip
+`$ sh ./cresp-model/dependencies-installer/linux.sh`
 
-> unzip main.zip
+###### *1.2.2 Windows Shell (Batch)*
 
-### 2. Usage (Linux Terminal)
+`$ cresp-model\dependencies-installer\windows.cmd`
+
+### 2. Basic Usage (Linux / Windows Shell)
 
 *2.1 Navigate to "cresp-model" directory:*
 

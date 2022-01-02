@@ -7,7 +7,7 @@ from random import sample
 class ExperimentsMaker:
 
     def __init__(self) -> None:
-        self.experiments_maker_config_file_path = Path("config/experiments_maker_config")
+        self.experiments_maker_config_file_path = Path("config/experiments_maker.cfg")
         self.experiments_output_file_path = None
         self.number_of_experiments = 0
         self.data_block_size_in_megabytes = 0
@@ -24,7 +24,7 @@ class ExperimentsMaker:
     def load_general_settings(self) -> None:
         cp = ConfigParser()  # INIT CONFIGPARSER OBJECT
         cp.optionxform = str  # PRESERVE OPTIONS NAMES' CASE
-        cp.read(self.experiments_maker_config_file_path)
+        cp.read(self.experiments_maker_config_file_path, encoding="utf-8")
         self.number_of_experiments = int(cp.get("general settings", "number_of_experiments"))
         self.data_block_size_in_megabytes = float(cp.get("general settings", "data_block_size_in_megabytes"))
         self.gamma = int(cp.get("general settings", "γ"))
@@ -34,7 +34,7 @@ class ExperimentsMaker:
     def load_samples_ranges(self) -> None:
         cp = ConfigParser()  # INIT CONFIGPARSER OBJECT
         cp.optionxform = str  # PRESERVE OPTIONS NAMES' CASE
-        cp.read(self.experiments_maker_config_file_path)
+        cp.read(self.experiments_maker_config_file_path, encoding="utf-8")
         m_range = cp.get("samples range settings", "m").split("...")
         self.m_range.append(m_range[0])
         self.m_range.append(m_range[1])
@@ -123,7 +123,7 @@ class ExperimentsMaker:
         cp = ConfigParser()  # INIT CONFIGPARSER OBJECT
         cp.optionxform = str  # PRESERVE OPTIONS NAMES' CASE
         for i in range(self.number_of_experiments):
-            with open(self.experiments_output_file_path, "w") as file_object:
+            with open(self.experiments_output_file_path, "w", encoding="utf-8") as file_object:
                 cp["Experiment " + str(i+1)] = {
                     "m": str(self.m_list[i]),
                     "r": str(self.r_list[i]),

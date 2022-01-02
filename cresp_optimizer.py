@@ -8,7 +8,7 @@ from time import time
 class CrespOptimizer:
 
     def __init__(self) -> None:
-        self.config_file_path = Path("config/cresp_optimizer_config")
+        self.config_file_path = Path("config/cresp_optimizer.cfg")
         self.betaZero = 0.0
         self.betaOne = 0.0
         self.betaTwo = 0.0
@@ -310,7 +310,7 @@ def main():
     cp.optionxform = str
 
     # READ CONFIG FILE
-    cp.read(co.config_file_path)
+    cp.read(co.config_file_path, encoding="utf-8")
 
     # LOAD BETA PARAMETERS (β0, β1, β2, β3, β4, β5, β6, β7)
     co.load_beta_parameters(cp)

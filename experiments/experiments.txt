@@ -3,9 +3,9 @@ m = 6
 r = 1
 M = 12
 input_size_in_gb = 2
-number_of_vms = 2
-number_of_vcpus_per_vm = 2
-total_number_of_vcpus = 4
+number_of_nodes = 2
+number_of_slots_per_node = 2
+total_number_of_slots = 4
 execution_time_in_seconds = 216.565663576126
 
 [Experiment 2]
@@ -13,9 +13,9 @@ m = 6
 r = 2
 M = 20
 input_size_in_gb = 3
-number_of_vms = 2
-number_of_vcpus_per_vm = 2
-total_number_of_vcpus = 4
+number_of_nodes = 2
+number_of_slots_per_node = 2
+total_number_of_slots = 4
 execution_time_in_seconds = 334.226956367492
 
 [Experiment 3]
@@ -23,9 +23,9 @@ m = 11
 r = 4
 M = 73
 input_size_in_gb = 10
-number_of_vms = 2
-number_of_vcpus_per_vm = 2
-total_number_of_vcpus = 4
+number_of_nodes = 2
+number_of_slots_per_node = 2
+total_number_of_slots = 4
 execution_time_in_seconds = 995.914857864379
 
 [Experiment 4]
@@ -33,9 +33,9 @@ m = 2
 r = 1
 M = 64
 input_size_in_gb = 8
-number_of_vms = 2
-number_of_vcpus_per_vm = 2
-total_number_of_vcpus = 4
+number_of_nodes = 2
+number_of_slots_per_node = 2
+total_number_of_slots = 4
 execution_time_in_seconds = 796.716057300567
 
 [Experiment 5]
@@ -43,9 +43,9 @@ m = 11
 r = 1
 M = 121
 input_size_in_gb = 16
-number_of_vms = 2
-number_of_vcpus_per_vm = 2
-total_number_of_vcpus = 4
+number_of_nodes = 2
+number_of_slots_per_node = 2
+total_number_of_slots = 4
 execution_time_in_seconds = 1576.01213240623
 
 [Experiment 6]
@@ -53,9 +53,9 @@ m = 5
 r = 2
 M = 320
 input_size_in_gb = 40
-number_of_vms = 2
-number_of_vcpus_per_vm = 2
-total_number_of_vcpus = 4
+number_of_nodes = 2
+number_of_slots_per_node = 2
+total_number_of_slots = 4
 execution_time_in_seconds = 3978.53990221023
 
 [Experiment 7]
@@ -63,9 +63,9 @@ m = 8
 r = 5
 M = 154
 input_size_in_gb = 20
-number_of_vms = 2
-number_of_vcpus_per_vm = 2
-total_number_of_vcpus = 4
+number_of_nodes = 2
+number_of_slots_per_node = 2
+total_number_of_slots = 4
 execution_time_in_seconds = 2027.90285372734
 
 [Experiment 8]
@@ -73,9 +73,9 @@ m = 14
 r = 3
 M = 52
 input_size_in_gb = 7
-number_of_vms = 2
-number_of_vcpus_per_vm = 2
-total_number_of_vcpus = 4
+number_of_nodes = 2
+number_of_slots_per_node = 2
+total_number_of_slots = 4
 execution_time_in_seconds = 717.30748963356
 
 [Experiment 9]
@@ -83,9 +83,9 @@ m = 11
 r = 2
 M = 96
 input_size_in_gb = 12
-number_of_vms = 2
-number_of_vcpus_per_vm = 2
-total_number_of_vcpus = 4
+number_of_nodes = 2
+number_of_slots_per_node = 2
+total_number_of_slots = 4
 execution_time_in_seconds = 1216.74036836624
 
 [Experiment 10]
@@ -93,9 +93,9 @@ m = 6
 r = 1
 M = 48
 input_size_in_gb = 6
-number_of_vms = 2
-number_of_vcpus_per_vm = 2
-total_number_of_vcpus = 4
+number_of_nodes = 2
+number_of_slots_per_node = 2
+total_number_of_slots = 4
 execution_time_in_seconds = 615.260910034179
 
 [Experiment 11]
@@ -103,9 +103,9 @@ m = 15
 r = 5
 M = 144
 input_size_in_gb = 18
-number_of_vms = 2
-number_of_vcpus_per_vm = 2
-total_number_of_vcpus = 4
+number_of_nodes = 2
+number_of_slots_per_node = 2
+total_number_of_slots = 4
 execution_time_in_seconds = 1891.65651726722
 
 [Experiment 12]
@@ -113,9 +113,9 @@ m = 14
 r = 12
 M = 134
 input_size_in_gb = 17
-number_of_vms = 2
-number_of_vcpus_per_vm = 2
-total_number_of_vcpus = 4
+number_of_nodes = 2
+number_of_slots_per_node = 2
+total_number_of_slots = 4
 execution_time_in_seconds = 1672.09993720054
 
 [Experiment 13]
@@ -123,9 +123,9 @@ m = 15
 r = 12
 M = 67
 input_size_in_gb = 9
-number_of_vms = 2
-number_of_vcpus_per_vm = 2
-total_number_of_vcpus = 4
+number_of_nodes = 2
+number_of_slots_per_node = 2
+total_number_of_slots = 4
 execution_time_in_seconds = 952.667997598648
 
 [Experiment 14]
@@ -133,9 +133,9 @@ m = 15
 r = 2
 M = 207
 input_size_in_gb = 26
-number_of_vms = 2
-number_of_vcpus_per_vm = 2
-total_number_of_vcpus = 4
+number_of_nodes = 2
+number_of_slots_per_node = 2
+total_number_of_slots = 4
 execution_time_in_seconds = 2585.24501538276
 
 [Experiment 15]
@@ -143,9 +143,9 @@ m = 6
 r = 5
 M = 38
 input_size_in_gb = 5
-number_of_vms = 2
-number_of_vcpus_per_vm = 2
-total_number_of_vcpus = 4
+number_of_nodes = 2
+number_of_slots_per_node = 2
+total_number_of_slots = 4
 execution_time_in_seconds = 507.390856742858
 
 [Experiment 16]
@@ -153,9 +153,9 @@ m = 7
 r = 5
 M = 300
 input_size_in_gb = 38
-number_of_vms = 2
-number_of_vcpus_per_vm = 2
-total_number_of_vcpus = 4
+number_of_nodes = 2
+number_of_slots_per_node = 2
+total_number_of_slots = 4
 execution_time_in_seconds = 3827.73002672195
 
 [Experiment 17]
@@ -163,9 +163,9 @@ m = 7
 r = 2
 M = 88
 input_size_in_gb = 11
-number_of_vms = 2
-number_of_vcpus_per_vm = 2
-total_number_of_vcpus = 4
+number_of_nodes = 2
+number_of_slots_per_node = 2
+total_number_of_slots = 4
 execution_time_in_seconds = 1118.40783596038
 
 [Experiment 18]
@@ -173,9 +173,9 @@ m = 9
 r = 7
 M = 118
 input_size_in_gb = 15
-number_of_vms = 2
-number_of_vcpus_per_vm = 2
-total_number_of_vcpus = 4
+number_of_nodes = 2
+number_of_slots_per_node = 2
+total_number_of_slots = 4
 execution_time_in_seconds = 1492.13494181633
 
 [Experiment 19]
@@ -183,9 +183,9 @@ m = 7
 r = 6
 M = 25
 input_size_in_gb = 4
-number_of_vms = 2
-number_of_vcpus_per_vm = 2
-total_number_of_vcpus = 4
+number_of_nodes = 2
+number_of_slots_per_node = 2
+total_number_of_slots = 4
 execution_time_in_seconds = 402.899235963821
 
 [Experiment 20]
@@ -193,8 +193,8 @@ m = 2
 r = 1
 M = 7
 input_size_in_gb = 1
-number_of_vms = 2
-number_of_vcpus_per_vm = 2
-total_number_of_vcpus = 4
+number_of_nodes = 2
+number_of_slots_per_node = 2
+total_number_of_slots = 4
 execution_time_in_seconds = 117.835958719253
 

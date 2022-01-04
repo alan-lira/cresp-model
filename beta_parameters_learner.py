@@ -23,11 +23,21 @@ class BetaParametersLearner:
         self.betaSix = 0.0
         self.betaSeven = 0.0
 
+    def get_experiments_input_file_path(self,
+                                        config_parser: ConfigParser) -> Path:
+        exception_message = "{0}: 'experiments_input_file' must be a valid path file!" \
+            .format(self.beta_parameters_learner_config_file_path)
+        try:
+            experiments_input_file_path = Path(config_parser.get("general", "experiments_input_file"))
+        except ValueError:
+            raise ValueError(exception_message)
+        return experiments_input_file_path
+
     def load_general_settings(self) -> None:
         cp = ConfigParser()  # INIT CONFIGPARSER OBJECT
         cp.optionxform = str  # PRESERVE OPTIONS NAMES' CASE
         cp.read(self.beta_parameters_learner_config_file_path, encoding="utf-8")
-        self.experiments_input_file_path = Path(cp.get("general", "experiments_input_file"))
+        self.experiments_input_file_path = self.get_experiments_input_file_path(cp)
         del cp  # DELETE CONFIGPARSER OBJECT
 
     @staticmethod
@@ -91,14 +101,12 @@ class BetaParametersLearner:
         cp.optionxform = str  # PRESERVE OPTIONS NAMES' CASE)
         cp.read(self.experiments_input_file_path, encoding="utf-8")
         for section in cp.sections():
-            execution_time_in_seconds = 0
+            exception_message = "Please fill all the '{0}' fields of '{1}' file!" \
+                .format("execution_time_in_seconds", self.experiments_input_file_path)
             try:
                 execution_time_in_seconds = float(cp.get(section, "execution_time_in_seconds"))
             except ValueError:
-                print("Please fill all the '{0}' fields of '{1}' file!"
-                      .format("execution_time_in_seconds",
-                              self.experiments_input_file_path))
-                exit(1)
+                raise ValueError(exception_message)
             self.b_vector.append(execution_time_in_seconds)
         del cp  # DELETE CONFIGPARSER OBJECT
 
@@ -156,6 +164,9 @@ def main():
 
     # DELETE BETA PARAMETERS LEARNER OBJECT
     del bpl
+
+    # END
+    exit(0)
 
 
 if __name__ == "__main__":

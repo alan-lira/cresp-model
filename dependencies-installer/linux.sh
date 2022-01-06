@@ -7,4 +7,6 @@ python3 -m pip install --upgrade numpy
 python3 -m pip install --upgrade scipy
 # Install/Upgrade 'GurobiPy' library
 python3 -m pip install --upgrade gurobipy
+# Install 'Vim' text editor
+sudo apt install vim -y
 

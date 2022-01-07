@@ -21,11 +21,11 @@
 ##### 1.1.2 *Download* and *extract*:
 
 - **Linux**:
-<br/>
+
 `$ sudo apt install unzip -y && wget -O cresp-model.zip https://github.com/alan-lira/cresp-model/archive/refs/heads/main.zip && unzip cresp-model.zip && mv cresp-model-main cresp-model && rm -rf cresp-model.zip`
-<br/><br/>
+
 - **Windows**:
-<br/>
+
 `$ powershell -Command Invoke-WebRequest https://github.com/alan-lira/cresp-model/archive/refs/heads/main.zip -OutFile cresp-model.zip; Expand-Archive -Path cresp-model.zip; Move-Item -Path cresp-model\cresp-model-main -Destination .\; del cresp-model; Rename-Item cresp-model-main cresp-model; del cresp-model.zip`
 
 ### 1.2 Install dependencies [⚠️Requires [Python](https://www.python.org/downloads/ "Download Python")].

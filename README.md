@@ -33,11 +33,11 @@
 ##### 1.2.1 Execute the <span style="color:SlateGray">*dependencies-installer*</span> script:
 
 - **Linux (Bash)**:
-<br/>
+
 `$ sh ./cresp-model/dependencies-installer/linux.sh`
-<br/><br/>
+
 - **Windows (Batch)**:
-<br/>
+
 `$ .\cresp-model\dependencies-installer\windows.cmd`
 
 > **NOTE**: The ***Vim*** text editor should be available after running the <span style="color:SlateGray">***dependencies-installer***</span> script suitable for your OS.

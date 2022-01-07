@@ -41,21 +41,19 @@ $ `sh ./cresp-model/dependencies-installer/linux.sh`
 $ `.\cresp-model\dependencies-installer\windows.cmd`
 
 > **NOTE**: The ***Vim*** text editor should be available after running the <span style="color:SlateGray">***dependencies-installer***</span> script suitable for your OS.
-<br/><br/>
+\
+\
 Vim basic commands example (keyboard key combination):
-<br/><br/>
+\
+\
 $ `vim example.txt`
-<br/><br/>
-🔹 `i`: Enables the edition mode;
-<br/>
-🔹 `Esc`: Disables the edition mode;
-<br/>
-🔹 `:` ➡ `w` ➡ `Enter`: Saves the changes made to target file;
-<br/>
-🔹 `:` ➡ `q` ➡ `Enter`: Quits the editor;
-<br/>
-🔹 `:` ➡ `w` ➡ `q` ➡ `!` ➡ `Enter`: Quits the editor, saving the changes made to target file;
-<br/>
+\
+\
+🔹 `i`: Enables the edition mode;\
+🔹 `Esc`: Disables the edition mode;\
+🔹 `:` ➡ `w` ➡ `Enter`: Saves the changes made to target file;\
+🔹 `:` ➡ `q` ➡ `Enter`: Quits the editor;\
+🔹 `:` ➡ `w` ➡ `q` ➡ `!` ➡ `Enter`: Quits the editor, saving the changes made to target file;\
 🔹 `:` ➡ `q` ➡ `!` ➡ `Enter`: Quits the editor, discarding the unsaved changes.
 
 ## 2. Basic Usage (Shell)

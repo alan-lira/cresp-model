@@ -26,7 +26,7 @@ $ `sudo apt install unzip -y && wget -O cresp-model.zip https://github.com/alan-
 
 - **Windows**:
 
-$ `powershell -Command Invoke-WebRequest https://github.com/alan-lira/cresp-model/archive/refs/heads/main.zip -OutFile cresp-model.zip; Expand-Archive -Path cresp-model.zip; Move-Item -Path cresp-model\cresp-model-main -Destination .\; del cresp-model; Rename-Item cresp-model-main cresp-model; del cresp-model.zip`
+&gt; `powershell -Command Invoke-WebRequest https://github.com/alan-lira/cresp-model/archive/refs/heads/main.zip -OutFile cresp-model.zip; Expand-Archive -Path cresp-model.zip; Move-Item -Path cresp-model\cresp-model-main -Destination .\; del cresp-model; Rename-Item cresp-model-main cresp-model; del cresp-model.zip`
 
 ### 1.2 Install dependencies [⚠️Requires [Python](https://www.python.org/downloads/ "Download Python")].
 
@@ -38,7 +38,7 @@ $ `sh ./cresp-model/dependencies-installer/linux.sh`
 
 - **Windows (Batch)**:
 
-$ `.\cresp-model\dependencies-installer\windows.cmd`
+&gt; `.\cresp-model\dependencies-installer\windows.cmd`
 
 > **NOTE**: The ***Vim*** text editor should be available after running the <span style="color:SlateGray">***dependencies-installer***</span> script suitable for your OS.
 \
@@ -46,7 +46,7 @@ $ `.\cresp-model\dependencies-installer\windows.cmd`
 Vim basic commands example (keyboard key combination):
 \
 \
-$ `vim example.txt`
+$ / &gt;  `vim example.txt`
 \
 \
 🔹 `i`: Enables the edition mode;\
@@ -85,7 +85,7 @@ $ `vim ./cresp-model/config/experiments_maker.cfg`
 <br/><br/>
 - **Windows**:
 <br/>
-$ `vim .\cresp-model\config\experiments_maker.cfg`
+&gt; `vim .\cresp-model\config\experiments_maker.cfg`
 
 ##### 2.1.2 Execute <span style="color:DarkBlue">*experiments_maker.py*</span> to generate the experiments file:
 - **Linux**:
@@ -94,7 +94,7 @@ $ `python3 ./cresp-model/experiments_maker.py`
 <br/><br/>
 - **Windows**:
 <br/>
-$ `python .\cresp-model\experiments_maker.py`
+&gt; `python .\cresp-model\experiments_maker.py`
 
 > **NOTE**: <span style="color:Maroon">***experiments_output_file***</span> will be auto generated from the fields set in <span style="color:DarkGoldenRod">***experiments_maker.cfg***</span>.
 
@@ -122,7 +122,7 @@ $ `vim ./cresp-model/experiments/experiments.txt`
 <br/><br/>
 - **Windows**:
 <br/>
-$ `vim .\cresp-model\experiments\experiments.txt`
+&gt; `vim .\cresp-model\experiments\experiments.txt`
 
 ### 2.3 From the experiments conducted, apply linear regression analysis (non-negative least squares – NNLS) to obtain the *β<sub>i</sub>* parameters.
 
@@ -134,7 +134,7 @@ $ `vim ./cresp-model/config/beta_parameters_learner.cfg`
 <br/><br/>
 - **Windows**:
 <br/>
-$ `vim .\cresp-model\config\beta_parameters_learner.cfg`
+&gt; `vim .\cresp-model\config\beta_parameters_learner.cfg`
 
 ##### 2.3.2 Execute <span style="color:DarkBlue">*beta_parameters_learner.py*</span> to calculate the *β<sub>i</sub>* parameters:
 - **Linux**:
@@ -143,7 +143,7 @@ $ `python3 ./cresp-model/beta_parameters_learner.py`
 <br/><br/>
 - **Windows**:
 <br/>
-$ `python .\cresp-model\beta_parameters_learner.py`
+&gt; `python .\cresp-model\beta_parameters_learner.py`
 
 > **NOTE**: The <span style="color:Maroon">***β<sub>i</sub>***</span> fields of <span style="color:DarkGoldenRod">***cresp_optimizer.cfg***</span> will be auto updated with the *β<sub>i</sub>* parameters learned from <span style="color:Maroon">***experiments_input_file***</span>.
 
@@ -180,7 +180,7 @@ $ `vim ./cresp-model/config/cresp_optimizer.cfg`
 <br/><br/>
 - **Windows**:
 <br/>
-$ `vim .\cresp-model\config\cresp_optimizer.cfg`
+&gt; `vim .\cresp-model\config\cresp_optimizer.cfg`
 
 ##### 2.4.2 Execute <span style="color:DarkBlue">*cresp_optimizer.py*</span> to estimate the optimal *m* and *R* values:
 - **Linux**:
@@ -189,5 +189,5 @@ $ `python3 ./cresp-model/cresp_optimizer.py`
 <br/><br/>
 - **Windows**:
 <br/>
-$ `python .\cresp-model\cresp_optimizer.py`
+&gt; `python .\cresp-model\cresp_optimizer.py`
 

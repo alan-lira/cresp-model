@@ -7,8 +7,6 @@
 
 ## ⚙️ 1. Installation (Shell)
 
----
-
 ### 1.1 Clone OR download this repository's content.
 
 ##### 1.1.1 *Clone* [⚠️Requires [Git](https://git-scm.com/downloads "Download Git")]:
@@ -56,8 +54,6 @@ $ / &gt;  `vim example.txt`
 🔹 `:` ➡ `q` ➡ `!` ➡ `Enter`: Quits the editor, discarding the unsaved changes.
 
 ## 💻 2. Basic Usage (Shell)
-
----
 
 The usage consists of four interdependent major steps.
 

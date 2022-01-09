@@ -17,29 +17,33 @@ $ `git clone https://github.com/alan-lira/cresp-model.git`
 
 ##### 1.1.2 *Download* and *extract*:
 
-- **Linux (Root)**:
+- **Linux**:
 
 ```console
 username@hostname:~$ sudo apt install unzip -y && wget -O cresp-model.zip https://github.com/alan-lira/cresp-model/archive/refs/heads/main.zip && unzip cresp-model.zip && mv cresp-model-main cresp-model && rm -rf cresp-model.zip
 ```
 
-- **Windows (Administrator)**:
+- **Windows**:
 
 ```cmd
-C:\Windows\system32> powershell -Command Invoke-WebRequest https://github.com/alan-lira/cresp-model/archive/refs/heads/main.zip -OutFile cresp-model.zip; Expand-Archive -Path cresp-model.zip; Move-Item -Path cresp-model\cresp-model-main -Destination .\; del cresp-model; Rename-Item cresp-model-main cresp-model; del cresp-model.zip
+C:\Users\username> powershell -Command Invoke-WebRequest https://github.com/alan-lira/cresp-model/archive/refs/heads/main.zip -OutFile cresp-model.zip; Expand-Archive -Path cresp-model.zip; Move-Item -Path cresp-model\cresp-model-main -Destination .\; del cresp-model; Rename-Item cresp-model-main cresp-model; del cresp-model.zip
 ```
 
 ### 1.2 Install dependencies [⚠️Requires [Python](https://www.python.org/downloads/ "Download Python")].
 
 ##### 1.2.1 Execute the <span style="color:SlateGray">*dependencies-installer*</span> script:
 
-- **Linux (Bash)**:
+- **Linux**:
 
-$ `sh ./cresp-model/dependencies-installer/linux.sh`
+```console
+username@hostname:~$ sh ./cresp-model/dependencies-installer/linux.sh
+```
 
-- **Windows (Batch)**:
+- **Windows**:
 
-&gt; `.\cresp-model\dependencies-installer\windows.cmd`
+```cmd
+C:\Users\username> .\cresp-model\dependencies-installer\windows.cmd
+```
 
 > **NOTE**: The ***Vim*** text editor should be available after running the <span style="color:SlateGray">***dependencies-installer***</span> script suitable for your OS.
 \

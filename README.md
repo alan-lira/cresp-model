@@ -11,7 +11,9 @@
 
 ##### 1.1.1 *Clone* [⚠️Requires [Git](https://git-scm.com/downloads "Download Git")]:
 
-$ `git clone https://github.com/alan-lira/cresp-model.git`
+```console
+git clone https://github.com/alan-lira/cresp-model.git
+```
 
 **OR**
 
@@ -73,7 +75,7 @@ The usage consists of four interdependent major steps.
 
 🔸 <span style="color:Maroon">***data_block_size_in_megabytes***</span>: Size in Megabytes (MB) for each data block (e.g., 128 for Hadoop Distributed File System – HDFS);
 
-🔸 <span style="color:Maroon">***γ (gamma)***</span>: Amount of slots (cores) per node;
+🔸 <span style="color:Maroon">***γ*** (gamma)</span>: Amount of slots (cores) per node;
 
 🔸 <span style="color:Maroon">***experiments_output_file***</span>: Target output file path for experiments to be performed.
 
@@ -181,13 +183,13 @@ C:\Users\username> python .\cresp-model\beta_parameters_learner.py
 
 🔸 <span style="color:Maroon">***M***</span>: Number of Map tasks (chunks of input data, considering the data block size of a particular file system);
 
-🔸 <span style="color:Maroon">***γ (gamma)***</span>: Amount of slots (cores) per node;
+🔸 <span style="color:Maroon">***γ*** (gamma)</span>: Amount of slots (cores) per node;
 
-🔸 <span style="color:Maroon">***υ (upsilon)***</span>: Monetary cost (USD) of using a node for one hour;
+🔸 <span style="color:Maroon">***υ*** (upsilon)</span>: Monetary cost (USD) of using a node for one hour;
 
-🔸 <span style="color:Maroon">***φ (phi)***</span>: Maximum monetary cost (USD) for finishing the job (budget constraint);
+🔸 <span style="color:Maroon">***φ*** (phi)</span>: Maximum monetary cost (USD) for finishing the job (budget constraint);
 
-🔸 <span style="color:Maroon">***τ (tau)***</span>: Maximum amount of time, in hours, for finishing the job (deadline constraint);
+🔸 <span style="color:Maroon">***τ*** (tau)</span>: Maximum amount of time, in hours, for finishing the job (deadline constraint);
 
 🔸 <span style="color:Maroon">***m***</span>: Bounds associated to the *m* decision variable, where *m* ∈ N<sup>*</sup>;
 

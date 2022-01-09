@@ -48,12 +48,12 @@ C:\Users\username> .\cresp-model\dependencies-installer\windows.cmd
 ```
 
 > **NOTE**: The ***Vim*** text editor should be available after running the <span style="color:SlateGray">***dependencies-installer***</span> script suitable for your OS.
-\
-\
-Vim basic commands example (keyboard key combination):
-\
-\
-$ / &gt;  `vim example.txt`
+
+```console
+vim example.txt
+```
+
+> Vim basic commands example (keyboard key combination):
 \
 \
 🔹 `i`: Enables the edition mode;\

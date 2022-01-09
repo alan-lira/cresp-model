@@ -3,7 +3,6 @@
 
 ## Supported Operating Systems
 
----
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Linux_logo.jpg/640px-Linux_logo.jpg" alt="drawing" title="Linux" height="48" width="42"/> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Windows_logo_-_2021.svg/800px-Windows_logo_-_2021.svg.png" alt="drawing" title="Windows" height="40" width="40"/>
 
 ## ⚙️ 1. Installation (Shell)
@@ -74,11 +73,11 @@ The usage consists of four interdependent major steps.
 
 🔸 <span style="color:Maroon">***experiments_output_file***</span>: Target output file path for experiments to be performed.
 
-🔸 <span style="color:Maroon">***m***</span>: Range for *m* pseudorandom values, where *m* ∈ N<sup>* </sup>;
+🔸 <span style="color:Maroon">***m***</span>: Range for *m* pseudorandom values, where *m* ∈ N<sup>*</sup>;
 
-🔸 <span style="color:Maroon">***r***</span>: Range for *r* pseudorandom values, where *r* ∈ N<sup>* </sup>;
+🔸 <span style="color:Maroon">***r***</span>: Range for *r* pseudorandom values, where *r* ∈ N<sup>*</sup>;
 
-🔸 <span style="color:Maroon">***M***</span>: Range for *M* pseudorandom values, where *M* ∈ N<sup>* </sup>.
+🔸 <span style="color:Maroon">***M***</span>: Range for *M* pseudorandom values, where *M* ∈ N<sup>*</sup>.
 
 - **Linux**:
 
@@ -166,9 +165,9 @@ $ `python3 ./cresp-model/beta_parameters_learner.py`
 
 🔸 <span style="color:Maroon">***τ (tau)***</span>: Maximum amount of time, in hours, for finishing the job (deadline constraint);
 
-🔸 <span style="color:Maroon">***m***</span>: Bounds associated to the *m* decision variable, where *m* ∈ N<sup>* </sup>;
+🔸 <span style="color:Maroon">***m***</span>: Bounds associated to the *m* decision variable, where *m* ∈ N<sup>*</sup>;
 
-🔸 <span style="color:Maroon">***R***</span>: Bounds associated to the *R* decision variable, where *R* ∈ N<sup>* </sup>;
+🔸 <span style="color:Maroon">***R***</span>: Bounds associated to the *R* decision variable, where *R* ∈ N<sup>*</sup>;
 
 🔸 <span style="color:Maroon">***optimization_problem***</span>: Problem to be optimized (Supported problems: 1, 2, 3): 1 – Given *φ*, find the best resource allocation to minimize the job time; 2 – Given *τ*, find the best resource allocation to minimize the monetary cost; 3 – Find the most economical solution for the job without *τ*;
 

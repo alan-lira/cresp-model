@@ -33,7 +33,7 @@ C:\Users\username> powershell -Command Invoke-WebRequest https://github.com/alan
 
 ### 1.2 Install dependencies [⚠️Requires [Python](https://www.python.org/downloads/ "Download Python")].
 
-##### 1.2.1 Execute the <span style="color:SlateGray">*dependencies-installer*</span> script:
+##### 1.2.1 Execute the <span style="color:SlateGray">*dependencies-installer*</span> script (this action may require root / administrator privileges):
 
 - **Linux**:
 
@@ -71,19 +71,19 @@ The usage consists of four interdependent major steps.
 
 ##### 2.1.1 Edit <span style="color:DarkGoldenRod">*experiments_maker.cfg*</span>, considering the following fields:
 
-🔸 <span style="color:Maroon">***number_of_experiments***</span>: Amount of {*m*, *r*, *M*} pseudorandom subset settings to be generated;
+▫ <span style="color:Maroon">***number_of_experiments***</span>: Amount of {*m*, *r*, *M*} pseudorandom subset settings to be generated;
 
-🔸 <span style="color:Maroon">***data_block_size_in_megabytes***</span>: Size in Megabytes (MB) for each data block (e.g., 128 for Hadoop Distributed File System – HDFS);
+▫ <span style="color:Maroon">***data_block_size_in_megabytes***</span>: Size in Megabytes (MB) for each data block (e.g., 128 for Hadoop Distributed File System – HDFS);
 
-🔸 <span style="color:Maroon">***γ*** (gamma)</span>: Amount of slots (cores) per node;
+▫ <span style="color:Maroon">***γ*** (gamma)</span>: Amount of slots (cores) per node;
 
-🔸 <span style="color:Maroon">***experiments_output_file***</span>: Target output file path for experiments to be performed.
+▫ <span style="color:Maroon">***experiments_output_file***</span>: Target output file path for experiments to be performed.
 
-🔸 <span style="color:Maroon">***m***</span>: Range for *m* pseudorandom values, where *m* ∈ N<sup>*</sup>;
+▫ <span style="color:Maroon">***m***</span>: Range for *m* pseudorandom values, where *m* ∈ N<sup>*</sup>;
 
-🔸 <span style="color:Maroon">***r***</span>: Range for *r* pseudorandom values, where *r* ∈ N<sup>*</sup>;
+▫ <span style="color:Maroon">***r***</span>: Range for *r* pseudorandom values, where *r* ∈ N<sup>*</sup>;
 
-🔸 <span style="color:Maroon">***M***</span>: Range for *M* pseudorandom values, where *M* ∈ N<sup>*</sup>.
+▫ <span style="color:Maroon">***M***</span>: Range for *M* pseudorandom values, where *M* ∈ N<sup>*</sup>.
 
 - **Linux**:
 
@@ -117,17 +117,17 @@ C:\Users\username> python .\cresp-model\experiments_maker.py
 
 ##### 2.2.1 Run each experiment defined in <span style="color:Maroon">*experiments_output_file*</span>, considering the following settings:
 
-🔸 <span style="color:Maroon">***m***</span>: Number of Map slots;
+▫ <span style="color:Maroon">***m***</span>: Number of Map slots;
 
-🔸 <span style="color:Maroon">***r***</span>: Number of Reduce slots;
+▫ <span style="color:Maroon">***r***</span>: Number of Reduce slots;
 
-🔸 <span style="color:Maroon">***input_size_in_gb***</span>: Amount of input data in Gigabytes (GB);
+▫ <span style="color:Maroon">***input_size_in_gb***</span>: Amount of input data in Gigabytes (GB);
 
-🔸 <span style="color:Maroon">***number_of_nodes***</span>: Amount of nodes to be used in the cluster;
+▫ <span style="color:Maroon">***number_of_nodes***</span>: Amount of nodes to be used in the cluster;
 
-🔸 <span style="color:Maroon">***number_of_slots_per_node***</span>: Amount of available slots (*m* + *r*) per node in the cluster;
+▫ <span style="color:Maroon">***number_of_slots_per_node***</span>: Amount of available slots (*m* + *r*) per node in the cluster;
  
-🔸 <span style="color:Maroon">***total_number_of_slots***</span>: Amount of available slots (*m* + *r*) in the cluster.
+▫ <span style="color:Maroon">***total_number_of_slots***</span>: Amount of available slots (*m* + *r*) in the cluster.
 
 ##### 2.2.2 Edit <span style="color:Maroon">*experiments_output_file*</span>, filing each <span style="color:Maroon">*execution_time_in_seconds*</span> field with the corresponding execution time observed:
 
@@ -179,29 +179,29 @@ C:\Users\username> python .\cresp-model\beta_parameters_learner.py
 
 ##### 2.4.1 Edit <span style="color:DarkGoldenRod">*cresp_optimizer.cfg*</span>, considering the following fields:
 
-🔸 <span style="color:Maroon">***β<sub>i</sub>***</span>: Beta parameters learned from the linear regression analysis (previous step);
+▫ <span style="color:Maroon">***β<sub>i</sub>***</span>: Beta parameters learned from the linear regression analysis (previous step);
 
-🔸 <span style="color:Maroon">***M***</span>: Number of Map tasks (chunks of input data, considering the data block size of a particular file system);
+▫ <span style="color:Maroon">***M***</span>: Number of Map tasks (chunks of input data, considering the data block size of a particular file system);
 
-🔸 <span style="color:Maroon">***γ*** (gamma)</span>: Amount of slots (cores) per node;
+▫ <span style="color:Maroon">***γ*** (gamma)</span>: Amount of slots (cores) per node;
 
-🔸 <span style="color:Maroon">***υ*** (upsilon)</span>: Monetary cost (USD) of using a node for one hour;
+▫ <span style="color:Maroon">***υ*** (upsilon)</span>: Monetary cost (USD) of using a node for one hour;
 
-🔸 <span style="color:Maroon">***φ*** (phi)</span>: Maximum monetary cost (USD) for finishing the job (budget constraint);
+▫ <span style="color:Maroon">***φ*** (phi)</span>: Maximum monetary cost (USD) for finishing the job (budget constraint);
 
-🔸 <span style="color:Maroon">***τ*** (tau)</span>: Maximum amount of time, in hours, for finishing the job (deadline constraint);
+▫ <span style="color:Maroon">***τ*** (tau)</span>: Maximum amount of time, in hours, for finishing the job (deadline constraint);
 
-🔸 <span style="color:Maroon">***m***</span>: Bounds associated to the *m* decision variable, where *m* ∈ N<sup>*</sup>;
+▫ <span style="color:Maroon">***m***</span>: Bounds associated to the *m* decision variable, where *m* ∈ N<sup>*</sup>;
 
-🔸 <span style="color:Maroon">***R***</span>: Bounds associated to the *R* decision variable, where *R* ∈ N<sup>*</sup>;
+▫ <span style="color:Maroon">***R***</span>: Bounds associated to the *R* decision variable, where *R* ∈ N<sup>*</sup>;
 
-🔸 <span style="color:Maroon">***optimization_problem***</span>: Problem to be optimized (Supported problems: 1, 2, 3): 1 – Given *φ*, find the best resource allocation to minimize the job time; 2 – Given *τ*, find the best resource allocation to minimize the monetary cost; 3 – Find the most economical solution for the job without *τ*;
+▫ <span style="color:Maroon">***optimization_problem***</span>: Problem to be optimized (Supported problems: 1, 2, 3): 1 – Given *φ*, find the best resource allocation to minimize the job time; 2 – Given *τ*, find the best resource allocation to minimize the monetary cost; 3 – Find the most economical solution for the job without *τ*;
 
-🔸 <span style="color:Maroon">***monetary_unit***</span>: Monetary cost solution output's unit (Supported units: USD);
+▫ <span style="color:Maroon">***monetary_unit***</span>: Monetary cost solution output's unit (Supported units: USD);
 
-🔸 <span style="color:Maroon">***time_unit***</span>: Time cost solution output's unit (Supported units: second, minute, hour);
+▫ <span style="color:Maroon">***time_unit***</span>: Time cost solution output's unit (Supported units: second, minute, hour);
 
-🔸 <span style="color:Maroon">***optimization_modes***</span>: Optimization modes to be used (Supported modes: brute_force, gurobi).
+▫ <span style="color:Maroon">***optimization_modes***</span>: Optimization modes to be used (Supported modes: brute_force, gurobi).
 
 - **Linux**:
 

@@ -289,14 +289,14 @@ class CrespOptimizer:
         self.optimization_modes = self.get_optimization_modes(config_parser)
 
     def calculate_T3(self,
-                     m_candidate: int,
-                     R_candidate: int) -> float:
+                     m: int,
+                     R: int) -> float:
         T3 = self.alfaZero + \
-             self.alfaOne / m_candidate + \
-             (self.alfaTwo * R_candidate) / m_candidate + \
-             (self.alfaThree * m_candidate) / R_candidate + \
-             self.alfaFour / R_candidate + \
-             self.alfaFive * R_candidate
+             self.alfaOne / m + \
+             (self.alfaTwo * R) / m + \
+             (self.alfaThree * m) / R + \
+             self.alfaFour / R + \
+             self.alfaFive * R
         if self.time_unit == "hour":
             T3 = T3 / 3600
         elif self.time_unit == "minute":
@@ -304,10 +304,10 @@ class CrespOptimizer:
         return T3
 
     def calculate_C(self,
-                    T3_candidate: float,
-                    m_candidate: int,
-                    R_candidate: int) -> float:
-        return self.Upsilon * T3_candidate * (m_candidate + R_candidate) / self.Gamma
+                    T3: float,
+                    m: int,
+                    R: int) -> float:
+        return self.Upsilon * T3 * (m + R) / self.Gamma
 
     def is_constraint_not_violated(self,
                                    C: float,
@@ -378,29 +378,25 @@ class CrespOptimizer:
                              vtype=GRB.INTEGER,
                              lb=self.R_lower_bound,
                              ub=self.R_upper_bound)
+            z0 = model.addVar(name="z0",
+                              vtype=GRB.CONTINUOUS)  # z0 = α0
             z1 = model.addVar(name="z1",
-                              vtype=GRB.CONTINUOUS,
-                              lb=(1 / self.m_upper_bound),
-                              ub=(1 / self.m_lower_bound))  # z1 = 1 / m -> m = 1 / z1
+                              vtype=GRB.CONTINUOUS)  # z1 = α1 / m -> z1 * m = α1
             z2 = model.addVar(name="z2",
-                              vtype=GRB.CONTINUOUS,
-                              lb=(1 / self.R_upper_bound),
-                              ub=(1 / self.R_lower_bound))  # z2 = 1 / R -> R = 1 / z2
+                              vtype=GRB.CONTINUOUS)  # z2 = (α2 * R) / m -> z2 * m = α2 * R
             z3 = model.addVar(name="z3",
-                              vtype=GRB.CONTINUOUS,
-                              lb=1,
-                              ub=GRB.INFINITY)  # z3 = R * z1
+                              vtype=GRB.CONTINUOUS)  # z3 = (α3 * m) / R -> z3 * R = α3 * m
             z4 = model.addVar(name="z4",
-                              vtype=GRB.CONTINUOUS,
-                              lb=1,
-                              ub=GRB.INFINITY)  # z4 = m * z2
+                              vtype=GRB.CONTINUOUS)  # z4 = α4 / R -> z4 * R = α4
+            z5 = model.addVar(name="z5",
+                              vtype=GRB.CONTINUOUS)  # z5 = α5 * R
             # SET TIME COST FUNCTION: T3(m,R) = α0 + α1/m + α2R/m + α3m/R + α4/R + α5R
-            T3 = self.alfaZero + \
-                self.alfaOne * z1 + \
-                self.alfaTwo * z3 + \
-                self.alfaThree * z4 + \
-                self.alfaFour * z2 + \
-                self.alfaFive * R
+            T3 = z0 + \
+                 z1 + \
+                 z2 + \
+                 z3 + \
+                 z4 + \
+                 z5
             if self.time_unit == "hour":
                 T3 = T3 / 3600
             elif self.time_unit == "minute":
@@ -421,19 +417,21 @@ class CrespOptimizer:
             elif self.optimization_problem == 3:
                 # MINIMIZE Upsilon * [T3(m,R)] * [(m+R) / Gamma]
                 model.setObjective(self.Upsilon * T3 * ((m + R) / self.Gamma), GRB.MINIMIZE)
-            model.addConstr(z1 * m == 1, "c1")  # z1 = 1 / m => m = 1 / z1
-            model.addConstr(z2 * R == 1, "c2")  # z2 = 1 / R => R = 1 / z2
-            model.addConstr(z3 == R * z1, "c3")  # z3 = R * z1
-            model.addConstr(z4 == m * z2, "c4")  # z4 = m * z2
+            model.addConstr(self.alfaZero == z0, "c1")  # z0 = α0
+            model.addConstr(self.alfaOne == z1 * m, "c2")  # z1 = α1 / m -> z1 * m = α1
+            model.addConstr(self.alfaTwo * R == z2 * m, "c3")  # z2 = (α2 * R) / m -> z2 * m = α2 * R
+            model.addConstr(self.alfaThree * m == z3 * R, "c4")  # z3 = (α3 * m) / R -> z3 * R = α3 * m
+            model.addConstr(self.alfaFour == z4 * R, "c5")  # z4 = α4 / R -> z4 * R = α4
+            model.addConstr(self.alfaFive * R == z5, "c6")  # z5 = α5 * R
             # OPTIMIZE MODEL
             model.optimize()
             # IF MODEL IS FEASIBLE (FOUND OPTIMAL VALUE, GRB.OPTIMAL):
             if model.status == 2:
                 for v in model.getVars():
-                    if str(v.varName) == "z1":
-                        self.m = ceil(1 / v.x)
-                    if str(v.varName) == "z2":
-                        self.R = ceil(1 / v.x)
+                    if str(v.varName) == "m":
+                        self.m = ceil(v.x)
+                    if str(v.varName) == "R":
+                        self.R = ceil(v.x)
                 self.T3 = T3.getValue()
                 self.C = self.calculate_C(self.T3, self.m, self.R)
             del env

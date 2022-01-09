@@ -56,12 +56,12 @@ vim example.txt
 > Vim basic commands example (keyboard key combination):
 \
 \
-🔹 `i`: Enables the edition mode;\
-🔹 `Esc`: Disables the edition mode;\
-🔹 `:` ➡ `w` ➡ `Enter`: Saves the changes made to target file;\
-🔹 `:` ➡ `q` ➡ `Enter`: Quits the editor;\
-🔹 `:` ➡ `w` ➡ `q` ➡ `!` ➡ `Enter`: Quits the editor, saving the changes made to target file;\
-🔹 `:` ➡ `q` ➡ `!` ➡ `Enter`: Quits the editor, discarding the unsaved changes.
+◦ `i`: Enables the edition mode;\
+◦ `Esc`: Disables the edition mode;\
+◦ `:` ⇢ `w` ⇢ `Enter`: Saves the changes made to target file;\
+◦ `:` ⇢ `q` ⇢ `Enter`: Quits the editor;\
+◦ `:` ⇢ `w` ⇢ `q` ⇢ `!` ⇢ `Enter`: Quits the editor, saving the changes made to target file;\
+◦ `:` ⇢ `q` ⇢ `!` ⇢ `Enter`: Quits the editor, discarding the unsaved changes.
 
 ## 💻 2. Basic Usage (Shell)
 
